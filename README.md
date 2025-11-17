@@ -14,26 +14,26 @@ Full Controls Overview
 Navigate the simulation interactively with these keyboard shortcuts (case-sensitive; press once to activate). Focus on a planet to unlock moon viewing (numeric keys). Mouse: Left-drag to rotate view, right-drag to pan, wheel to zoom (clamped for clipping prevention). Arrow keys: Pan/orbit camera (use for gradual full-system zoom-out to reveal tiny outer moons without clamping issues—wheel zoom may obscure distant objects).
 Key,Action,Details:
 
-* t,Focus Sun,Centers camera on Sun (min zoom: ~5 units)
-* y,Focus Mercury,Zooms to innermost planet (no moons)
-* v,Focus Venus,Targets cloudy world (no moons)
-* g,Focus Earth,Homes in on home planet; press 1 for Luna
-* m,Focus Mars,"Views Red Planet; press 1 for Phobos, 2 for Deimos"
-* j,Focus Jupiter,Gas giant view; press 1–30+ for 95 moons (inner: Metis=1 to Callisto=8; outer: tiny irregulars)
-* s,Focus Saturn,"Ringed wonder; press 1–83 for moons (e.g., 1=Mimas, 20=Titan)"
-* u,Focus Uranus,"Sideways spinner; press 1–27 for moons (e.g., 1=Cordelia, 15=Titania)"
-* n,Focus Neptune,"Windy blue; press 1–14 for moons (e.g., 1=Naiad, 8=Triton)"
-* o,Focus Pluto,Dwarf at edge; no moons here (Charon via separate logic)
-* i,Focus Eris,Distant dwarf (if enabled)
-* h,Focus Haumea,Elongated Kuiper object
-* k,Focus Makemake,Icy world
-* c,Focus Ceres,Asteroid belt dwarf
-* a,Focus Asteroid Belt,Pans to main belt (~2.7 AU); reveals thousands of points
-* z,Focus Halley Comet,Tracks famous periodic comet
-* x,Focus Hale-Bopp,Great Comet of 1997
-* l,Focus Encke,Short-period comet
-* d,Focus Lovejoy,Recent sungrazer
-* 0–9 (Numerics),Select Moon,"After planet focus (e.g., j then 123 for Jupiter's moon #123); buffers multi-digit"
+* t-Focus Sun,Centers camera on Sun (min zoom: ~5 units)
+* y-Focus Mercury,Zooms to innermost planet (no moons)
+* v-Focus Venus,Targets cloudy world (no moons)
+* g-Focus Earth,Homes in on home planet; press 1 for Luna
+* m-Focus Mars,"Views Red Planet; press 1 for Phobos, 2 for Deimos"
+* j-Focus Jupiter,Gas giant view; press 1–30+ for 95 moons (inner: Metis=1 to Callisto=8; outer: tiny irregulars)
+* s-Focus Saturn,"Ringed wonder; press 1–83 for moons (e.g., 1=Mimas, 20=Titan)"
+* u-Focus Uranus,"Sideways spinner; press 1–27 for moons (e.g., 1=Cordelia, 15=Titania)"
+* n-Focus Neptune,"Windy blue; press 1–14 for moons (e.g., 1=Naiad, 8=Triton)"
+* o-Focus Pluto,Dwarf at edge; no moons here (Charon via separate logic)
+* i-Focus Eris,Distant dwarf (if enabled)
+* h-Focus Haumea,Elongated Kuiper object
+* k-Focus Makemake,Icy world
+* c-Focus Ceres,Asteroid belt dwarf
+* a-Focus Asteroid Belt,Pans to main belt (~2.7 AU); reveals thousands of points
+* z-Focus Halley Comet,Tracks famous periodic comet
+* x-Focus Hale-Bopp,Great Comet of 1997
+* l-Focus Encke,Short-period comet
+* d-Focus Lovejoy,Recent sungrazer
+* 0–9(Numerics),Select Moon,"After planet focus (e.g., j then 1,2,3 for Jupiter's moon #1,2,3); buffers multi-digit"
 * Arrow Keys,Pan/Orbit Camera,Smooth full-system navigation; ideal for unveiling tiny moons (avoids wheel clamp)
 * ESC,Pause/Exit,Halts animation or closes viewer
 
