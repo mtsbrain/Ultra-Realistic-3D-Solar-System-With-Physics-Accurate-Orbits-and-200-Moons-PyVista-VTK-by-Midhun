@@ -9,3 +9,4 @@ This project features:
 * Comets with real orbital paths
 * Scaled radii & distances for stable visualization
 * High-performance rendering with level-of-detail logic
+<img width="1358" height="663" alt="image" src="https://github.com/user-attachments/assets/5dbf978b-78ad-4503-ace0-a582004380af" />
