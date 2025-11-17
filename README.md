@@ -157,3 +157,68 @@ In this simulation, Jupiter dominates with its 95 dynamically orbiting moons (LO
 * Moons: 95 bodies in MOON_SCALE_FACTORS["jupiter"] (e.g., Io at 421,800 km, e=0.0041; tiny Valetudo at 18.7M km), updated in moon loop with tidal locking (actor.RotateZ(v_deg)) and LOD scaling (TINY_MOON_THRESHOLD = 150,000 km). Inner Galileans (1–8: Metis to Callisto) prograde; outer irregulars retrograde
 <img width="1351" height="662" alt="image" src="https://github.com/user-attachments/assets/319af0b4-53e3-4dde-83af-1ec627b3c697" />
 Focus on Jupiter: Press j to zoom (set_planet_focus('jupiter', self.jupiter_actor)), then 1–95 for moons (e.g., 6=Ganymede; multi-digit buffered; min distance: ~JUPITER_RADIUS * 20 units).
+
+SATURN
+Saturn, the jewel of the solar system, graces 9.58 AU from the Sun as a pale yellow gas giant, its serene beauty defined by an extensive ring system—composed of billions of icy particles, rocky debris, and dust, spanning 282,000 km wide but mere meters thick—making it the most spectacular in our cosmic backyard. Beneath the hazy ammonia-methane atmosphere lie hydrogen-helium layers hiding a rocky core, with winds whipping up to 1,800 km/h and hexagonal storms at its north pole. Temperatures hover at -140°C (-220°F) in the clouds, warming to 11,700 K at the core. Home to 145+ moons (83 modeled here), including smog-shrouded Titan (larger than Mercury, with lakes of liquid methane) and geyser-spewing Enceladus (hinting at subsurface ocean habitability). NASA's Voyager (1980–1981) and Cassini-Huygens (2004–2017) missions revealed ring "spokes," moon shepherds like Prometheus, and Titan's eerie Earth-like dunes, cementing Saturn's role in reshaping our understanding of icy worlds.
+In this simulation, Saturn captivates with its photorealistic rings (multi-layered: C, B, Cassini Division, A), 83 orbiting moons, and oblate spheroid form, powered by Keplerian orbits to depict its leisurely revolution and the intricate shepherding dynamics.
+<img width="1361" height="658" alt="image" src="https://github.com/user-attachments/assets/d8efc058-7f39-4281-b0dc-00d1fed2d8d9" />
+* Radius: 58,232 km (scaled to SATURN_RADIUS = REAL_SATURN_RADIUS_KM * SIZEKM_TO_SCENE for majestic scale)
+* Gravitational Parameter (GM): 3.793 × 10⁷ km³/s² (GM_SATURN), anchoring its vast ring and moon ensembles
+* Orbital Distance: 9.58 AU (SATURN_AU), generating SATURN_ORBIT_RADIUS = SATURN_AU * AU_SCALE
+* Rotation Period: 10.656 hours (sidereal; ROTATION_PERIOD["saturn"] = 10.656 * 3600 seconds), yielding ~0.034° per simulated second (ROTATION_DEG_PER_SIMSEC["saturn"])—causing 10% equatorial bulge
+<img width="1337" height="638" alt="image" src="https://github.com/user-attachments/assets/d946c1a4-3ce1-4f60-94da-401d389b4f94" />
+
+* Axial Tilt: 26.73° (AXIAL_TILTS["saturn"]), promoting seasonal ring tilts, via actor.RotateX(AXIAL_TILTS["saturn"]) and ring co-rotation
+* Rendering: A buttery-yellow pv.Sphere (color="gold" or "khaki" with banded haze textures from Cassini; opacity=0.9), oblate via ellipsoidal mesh (flattening ~10%). Iconic rings (ring_actors) as nested toroidal meshes (C: 74,658–92,000 km; B: 92,000–117,580 km; Cassini gap; A: 122,170–136,775 km), textured with icy particle noise for spokes and braids
+<img width="1350" height="655" alt="image" src="https://github.com/user-attachments/assets/40b8e7da-2e5d-4c38-9ba5-f31be52a5563" />
+
+* Orbital Motion: Dynamic positioning in update(): set_body_position_from_elements("saturn", self.saturn_actor, orbital_elements["saturn"], target_jd). Scene-scaled heliocentric coords (km_to_scene) emphasize its steady, near-circular trek.
+<img width="1355" height="659" alt="image" src="https://github.com/user-attachments/assets/b1946652-d769-4d97-8d57-d265bf43970a" />
+
+* Rotation: Swift prograde whirl (actor.RotateZ(deg % 360.0)), with rings rigidly attached (ractor.RotateX(AXIAL_TILTS["saturn"]) and position-synced)
+* Rings and Moons: Multi-ring system follows Saturn (for ractor in self.ring_actors: ractor.SetPosition(*self.saturn_actor.GetPosition())), with 83 moons in MOON_SCALE_FACTORS["saturn"] (e.g., Mimas at 186,000 km, e=0.020; Titan at 1,221,900 km, e=0.029). Moon loop handles tidal locking (actor.RotateZ(v_deg)) and scaling (TINY_MOON_THRESHOLD for inners like Pan); outer irregulars retrograde
+<img width="1354" height="661" alt="image" src="https://github.com/user-attachments/assets/e9d0f4bd-a29b-465f-b760-aba670fd51b9" />
+
+* Focus on Saturn: Press s to immerse (set_planet_focus('saturn', self.saturn_actor)), then 1–83 for moons (e.g., 15=Enceladus, 20=Titan; buffered numerics; min distance: ~SATURN_RADIUS * 20 units.
+URANUS
+Uranus, the sideways ice giant and seventh wanderer, lurks at 19.22 AU from the Sun, its pale cyan hue from methane-absorbed red light in a frigid atmosphere of hydrogen (83%), helium (15%), and methane (2%)—the coldest in the solar system at -224°C (-371°F) in the clouds. Famously tilted 98° on its axis (likely from a colossal ancient impact), it "rolls" around the Sun like a tipped bowling ball, causing extreme 42-year seasons where poles bask in sunlight while equators freeze in darkness. Beneath the hazy layers lies a slushy mantle of water, ammonia, and methane ices encasing a rocky core, with faint, dusty rings (13 known) and 27 moons—from tiny Miranda (geologically fractured) to shepherding Cordelia. Voyager 2's flyby (1986)—the only visit—revealed a bland, featureless disk hiding supersonic winds (up to 900 km/h) and a magnetic field oddly offset from its spin axis, unraveling enigmas of this "forgotten" world now eyed for future missions like NASA's proposed Uranus Orbiter.
+In this simulation, Uranus intrigues with its bizarre tilt (rings/moons co-rotating sideways), 27 dynamically orbiting satellites, and ethereal rings, harnessed by Keplerian mechanics to dramatize its ponderous, rolling orbit and seasonal extremes.
+<img width="1349" height="656" alt="image" src="https://github.com/user-attachments/assets/12fdf5b5-fc42-432b-beca-284ed8c5c7ac" />
+
+* Radius: 25,559 km (scaled to URANUS_RADIUS = REAL_URANUS_RADIUS_KM * SIZEKM_TO_SCENE for icy bulk)
+* Gravitational Parameter (GM): 5.794 × 10⁶ km³/s² (GM_URANUS), stabilizing its tilted ring-moon system
+* Orbital Distance: 19.22 AU (URANUS_AU), crafting URANUS_ORBIT_RADIUS = URANUS_AU * AU_SCALE
+* Rotation Period: -17.24 hours (retrograde; ROTATION_PERIOD["uranus"] = -17.24 * 3600 seconds), ~ -0.021° per simulated second (ROTATION_DEG_PER_SIMSEC["uranus"])—negative for backward spin
+<img width="1348" height="655" alt="image" src="https://github.com/user-attachments/assets/b1ce043d-8fe0-41ae-aefc-7855a46cbabe" />
+
+* Axial Tilt: 97.77° (AXIAL_TILTS["uranus"]), near-perpendicular for "sideways" motion, via actor.RotateX(AXIAL_TILTS["uranus"]) and ring co-tilt
+* Rendering: A serene blue-green pv.Sphere (color="cyan" with hazy methane bands via subtle noise textures; opacity=0.8), oblate (~2% flattening) to evoke Voyager's blandness. Faint epsilon-ring system (uranus_ring_actors) as thin, clumpy tori (e.g., epsilon at ~51,000 km), textured for dust/ice variabilit
+* Orbital Motion: Updated in update():set_body_position_from_elements("uranus", self.uranus_actor, orbital_elements["uranus"], target_jd)Scaled km-to-scene (km_to_scene) underscores its glacial 84-year lap
+<img width="1341" height="647" alt="image" src="https://github.com/user-attachments/assets/480589da-61cb-44bb-a4e2-4ba8e482d71c" />
+
+* Rotation: Retrograde axial roll (actor.RotateZ(-deg % 360.0) for negative period), with rings synced (for ractor in self.uranus_ring_actors: ractor.RotateX(AXIAL_TILTS["uranus"]))
+* Rings and Moons: 13 dusty rings position-locked to Uranus (ractor.SetPosition(*self.uranus_actor.GetPosition())), with 27 moons in MOON_SCALE_FACTORS["uranus"] (e.g., Miranda at 129,900 km, e=0.0013; outer Sycorax at 12.2M km, e=0.522). Moon updates include tidal locking (actor.RotateZ(v_deg)) and retrograde outer irregulars; URANUS_TINY_THRESHOLD = URANUS_RADIUS * 0.01 culls for perf
+<img width="1349" height="656" alt="image" src="https://github.com/user-attachments/assets/f28a66f3-0cd0-499b-a02a-dc6bf35bc964" />
+
+* Focus on Uranus: Press u to tilt into view (set_planet_focus('uranus', self.uranus_actor)), then 1–27 for moons (e.g., 12=Miranda, 20=Sycorax; multi-digit; min distance: ~URANUS_RADIUS * 20 units)
+NEPTUNE
+Neptune, the azure ice giant and outermost major planet, dwells at 30.07 AU from the Sun, its deep blue mantle forged by methane ice crystals scattering sunlight in a turbulent hydrogen-helium atmosphere laced with hydrogen sulfide for its stormy temperament—home to the solar system's fiercest winds (up to 2,100 km/h) and the Great Dark Spot, a transient anticyclone rivaling Earth in size. Frigid at -201°C (-330°F) in the clouds, it harbors a diamond rain interior and a rocky core under supercritical fluid layers, with faint, clumpy rings (five arcs: Adams to Galle) and 16 moons (14 modeled here), led by retrograde Triton—likely a captured Kuiper Belt object spewing nitrogen geysers from its icy crust. Voyager 2's solitary flyby (1989) unveiled these tempests and a bizarre magnetic field tilted 47° from its spin axis, while James Webb Space Telescope glimpses (2022–present) reveal evolving spots and ring bows, positioning Neptune as a dynamic frontier for ocean world studies.
+In this simulation, Neptune enchants with its 14 tidally diverse moons, subtle ring arcs (if extended), and windy banded globe, driven by Keplerian orbits to evoke its languid 165-year voyage and Triton's dramatic backward tumble.
+<img width="1347" height="650" alt="image" src="https://github.com/user-attachments/assets/c30c6e0e-8408-412f-9c4b-2caf40a1d427" />
+* Radius: 24,622 km (scaled to NEPTUNE_RADIUS = REAL_NEPTUNE_RADIUS_KM * SIZEKM_TO_SCENE for distant allure)
+* Gravitational Parameter (GM): 6.836 × 10⁶ km³/s² (GM_NEPTUNE), tethering its irregular satellites
+* Orbital Distance: 30.07 AU (NEPTUNE_AU), forming NEPTUNE_ORBIT_RADIUS = NEPTUNE_AU * AU_SCALE
+<img width="1346" height="652" alt="image" src="https://github.com/user-attachments/assets/805a6bb6-cbd2-471a-85c0-4d510a69d3be" />
+
+* Rotation Period: 16.11 hours (sidereal; ROTATION_PERIOD["neptune"] = 16.11 * 3600 seconds), ~0.022° per simulated second (ROTATION_DEG_PER_SIMSEC["neptune"]) for brisk day
+* Axial Tilt: 28.32° (AXIAL_TILTS["neptune"]), fostering asymmetric seasons, via actor.RotateX(AXIAL_TILTS["neptune"])
+* Rendering: A vivid indigo pv.Sphere (color="blue" with zonal cloud streaks via banded textures from Voyager; opacity=0.85), subtly oblate (~1% flattening). Faint ring system (extendable via uranus_ring_actors pattern) as arcuate dust bands (e.g., Adams at 63,000 km), with procedural clumping for bow shocks
+* Orbital Motion: Live refresh in update(): set_body_position_from_elements("neptune", self.neptune_actor, orbital_elements["neptune"], target_jd)Km-to-scene conversion (km_to_scene) captures its elliptical wanderings
+<img width="1351" height="648" alt="image" src="https://github.com/user-attachments/assets/c7ef5a49-508e-4b0d-8ad7-d2582d658bbb" />
+
+* Rotation: Prograde axial twirl (actor.RotateZ(deg % 360.0)), evoking spot drifts
+* Moons: 14 in MOON_SCALE_FACTORS["neptune"] (e.g., Naiad at 48,224 km, e=0.0047; Triton at 354,759 km, i=156.8° retrograde), processed in moon loop with locking (actor.RotateZ(v_deg)) and scaling (NEPTUNE_TINY_THRESHOLD = NEPTUNE_RADIUS * 0.01 for inners like Proteus). Outer irregulars (e.g., Neso at 49.2M km) highlight capture origins
+<img width="1351" height="655" alt="image" src="https://github.com/user-attachments/assets/de5c7546-3eb0-4b27-97d4-76f04620623a" />
+
+* Focus on Neptune: Press n to plunge in (set_planet_focus('neptune', self.neptune_actor)), then 1–14 for moons (e.g., 8=Triton; buffered; min distance: ~NEPTUNE_RADIUS * 20 units)
+  
