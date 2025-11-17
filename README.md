@@ -26,13 +26,17 @@ These values ensure Keplerian orbits and rotations align with J2000 epoch standa
 
 * Rendering: Created as a pv.Sphere with a bright yellow/orange color (color="yellow", opacity=0.8) and optional PBR shading for a photospheric glow (pbr=True, roughness=0.1). Textures (e.g., from examples.load_globe_texture()) can be layered for surface details like sunspots.
 * Barycentric Wobble: The Sun isn't static—it "wobbles" slightly due to Jupiter and Saturn's pull, calculated in the update() loop:
+  
     jup_mass = GM_JUPITER / GM_SUN
     sat_mass = GM_SATURN / GM_SUN
     jup_pos = np.array(self.jupiter_actor.GetPosition())
     sat_pos = np.array(self.saturn_actor.GetPosition())
     sun_wobble = (jup_mass * jup_pos + sat_mass * sat_pos) / (1 + jup_mass + sat_mass)
     self.sun_actor.SetPosition(*sun_wobble)
+  
 This adds realism, shifting the Sun by ~0.01–0.02 AU over time.
+
+
 * Rotation: Continuously rotates around its Z-axis in the animation loop (actor.RotateZ(deg % 360.0)), simulating solar day-night cycles (though simplified, as the Sun lacks a solid surface).
 * Role in Simulation: Acts as the reference point for all distances (e.g., comet sublimation at 3 AU via SUBLIMATION_DISTANCE), with its position converted to km-scale for heliocentric calcs (sun_pos_km = sun_pos / KM_TO_SCENE).
 * Focus on Sun: Press t to center the camera on the Sun (focus_sun() method), with automatic clipping range reset for smooth zooming (min distance: ~5 units).
